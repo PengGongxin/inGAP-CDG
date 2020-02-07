@@ -95,42 +95,42 @@ Contents
     
     Take a human RNA-seq data set with the accession number of SRR1045067 as an example. You can download this data set from SRA(Sequence Read Archive) database of NCBI(National Center for Biotechnology Information) using following command:
    
-    wget ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR104/SRR1045067/SRR1045067.sra
+            wget ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR104/SRR1045067/SRR1045067.sra
    
     (2) Using the SRA Toolkit (https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software) to convert the downloaded file of SRR1045067.sra into ‘fastq’ formats
    
-    fastq-dump —-split-3 SRR1045067.sra 
+        fastq-dump —-split-3 SRR1045067.sra 
 
     (3) Using Trimmomatic (http://www.usadellab.org/cms/index.php?page=trimmomatic) to trim low quality reads
   
-    java -jar ./Trimmomatic-0.30/trimmomatic-0.30.jar PE -threads 20 -phred33 SRR1045067_1.fastq SRR1045067_2.fastq  SRR1045067_1.clean.fastq SRR1045067_1.unpaired.fastq SRR1045067_2.clean.fastq SRR1045067_2.unpaired.fastq  ILLUMINACLIP:/Trimmomatic-0.30/adapters/TruSeq3-PE.fa:2:30:10  LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:100
+             java -jar ./Trimmomatic-0.30/trimmomatic-0.30.jar PE -threads 20 -phred33 SRR1045067_1.fastq SRR1045067_2.fastq  SRR1045067_1.clean.fastq SRR1045067_1.unpaired.fastq SRR1045067_2.clean.fastq SRR1045067_2.unpaired.fastq  ILLUMINACLIP:/Trimmomatic-0.30/adapters/TruSeq3-PE.fa:2:30:10  LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:100
    
     (4) Merging reads 
     
-       1) if the paired-end reads have overlaps, you can use FLASH to merge them into long reads (https://sourceforge.net/projects/flashpage/)
+        1) if the paired-end reads have overlaps, you can use FLASH to merge them into long reads (https://sourceforge.net/projects/flashpage/)
 
-          flash -r 150 -f 250 -s 20 SRR1045067_1.clean.fastq SRR1045067_2.clean.fastq -o out
+            flash -r 150 -f 250 -s 20 SRR1045067_1.clean.fastq SRR1045067_2.clean.fastq -o out
 	
           FLASH will merge the paired-end reads into file ’out.extendedFrags.fastq’ and then, you can convert the .fq file to .fa file
           
-          awk ‘{if(NR%4==1 || NR%4==2) print}’ out.extendedFrags.fastq | sed ’s/@/>/g’ > out.extendedFrags.fa
+            awk ‘{if(NR%4==1 || NR%4==2) print}’ out.extendedFrags.fastq | sed ’s/@/>/g’ > out.extendedFrags.fa
        
-       2) if the paired-end reads have no overlaps, inGAP-CDG will treat them as single-end reads.
+        2) if the paired-end reads have no overlaps, inGAP-CDG will treat them as single-end reads.
           
-          cat SRR1045067_1.clean.fastq SRR1045067_2.clean.fastq | awk ‘{if(NR%4==1 || NR%4==2) print}’ | sed ’s/@/>/g’ > out.extendedFrags.fa
+             cat SRR1045067_1.clean.fastq SRR1045067_2.clean.fastq | awk ‘{if(NR%4==1 || NR%4==2) print}’ | sed ’s/@/>/g’ > out.extendedFrags.fa
     
     (5) Running inGAP-CDG
     
-         i gene prediction based on reads
+        1) gene prediction based on reads
 
-          inGAP-CDG_readToCDS -i out.extendedFrags.fa -o $your_output_dir [options]
+           inGAP-CDG_readToCDS -i out.extendedFrags.fa -o $your_output_dir [options]
         
           When finished, the resulting gene prediction file will be in the output/OutputCDSs folder.
          
-         ii gene prediction based on transcripts
+        2) gene prediction based on transcripts
           First, you need to assemble RNA-seq reads into transcripts using any transcriptome assembler. (e.g. Trinity, Soapdenovo-Trans or Oases). If you get the transcripts file named ‘transcripts.fas’, you will run inGAP-CDG using the following command:
           
-          inGAP-CDG_transcriptToCDS -i transcripts.fas -o $your_output_dir [options]
+           inGAP-CDG_transcriptToCDS -i transcripts.fas -o $your_output_dir [options]
           
           When finished, the resulting gene prediction file will be in the output/OutputCDSs folder.
      
