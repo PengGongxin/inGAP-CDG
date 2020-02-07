@@ -87,24 +87,24 @@ Contents
 
      
 3.  inGAP-CDG RUN: common commands and examples 
-============================================================================================================
+===================================================================================================
 
-    NOTE:This manual assumes that you have all the software needed installed on your system and can thus directly run them. If you have it not installed but only downloaded and extracted to a folder, please use the absolute path instead
+    NOTE:This manual assumes that you have all the software needed installed on your system and can thus directly run them. If you have it not installed but only downloaded and extracted to a folder, please use the absolute path instead.
 
-   (1) Download reads from NCBI SRA database
-   Take a human RNA-seq data set with the accession number of SRR1045067 as an example. You can download this data set from SRA(Sequence Read Archive) database of NCBI(National Center for Biotechnology Information) using following command:
+    (1) Download reads from NCBI SRA database
+    Take a human RNA-seq data set with the accession number of SRR1045067 as an example. You can download this data set from SRA(Sequence Read Archive) database of NCBI(National Center for Biotechnology Information) using following command:
    
-   wget ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR104/SRR1045067/SRR1045067.sra
+    wget ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR104/SRR1045067/SRR1045067.sra
    
-   (2) Using the SRA Toolkit (https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software) to convert the downloaded file of SRR1045067.sra into ‘fastq’ formats
+    (2) Using the SRA Toolkit (https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software) to convert the downloaded file of SRR1045067.sra into ‘fastq’ formats
    
-   fastq-dump —-split-3 SRR1045067.sra 
+    fastq-dump —-split-3 SRR1045067.sra 
 
-   (3) Using Trimmomatic (http://www.usadellab.org/cms/index.php?page=trimmomatic) to trim low quality reads
+    (3) Using Trimmomatic (http://www.usadellab.org/cms/index.php?page=trimmomatic) to trim low quality reads
   
-   java -jar ./Trimmomatic-0.30/trimmomatic-0.30.jar PE -threads 20 -phred33 SRR1045067_1.fastq SRR1045067_2.fastq  SRR1045067_1.clean.fastq SRR1045067_1.unpaired.fastq SRR1045067_2.clean.fastq SRR1045067_2.unpaired.fastq  ILLUMINACLIP:/Trimmomatic-0.30/adapters/TruSeq3-PE.fa:2:30:10  LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:100
+    java -jar ./Trimmomatic-0.30/trimmomatic-0.30.jar PE -threads 20 -phred33 SRR1045067_1.fastq SRR1045067_2.fastq  SRR1045067_1.clean.fastq SRR1045067_1.unpaired.fastq SRR1045067_2.clean.fastq SRR1045067_2.unpaired.fastq  ILLUMINACLIP:/Trimmomatic-0.30/adapters/TruSeq3-PE.fa:2:30:10  LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:100
    
-   (4) Merging reads 
+    (4) Merging reads 
        1) if the paired-end reads have overlaps, you can use FLASH to merge them into long reads (https://sourceforge.net/projects/flashpage/)
 
           flash -r 150 -f 250 -s 20 SRR1045067_1.clean.fastq SRR1045067_2.clean.fastq -o out
@@ -117,8 +117,8 @@ Contents
           
           cat SRR1045067_1.clean.fastq SRR1045067_2.clean.fastq | awk ‘{if(NR%4==1 || NR%4==2) print}’ | sed ’s/@/>/g’ > out.extendedFrags.fa
     
-   (5) Running inGAP-CDG
-       1) gene prediction based on reads
+    (5) Running inGAP-CDG
+        1) gene prediction based on reads
 
           inGAP-CDG_readToCDS -i out.extendedFrags.fa -o $your_output_dir [options]
         
@@ -131,7 +131,7 @@ Contents
           
           When finished, the resulting gene prediction file will be in the output/OutputCDSs folder.
      
-   (6) Testing inGAP-CDG 
+    (6) Testing inGAP-CDG 
 
        You can test inGAP-CDG using the example file in the inGAP-CDG. The “example.fas” was sampled from a human RNA-seq data set with the accession number of SRR1045067. Specifically, paired-end reads were firstly merged by FLASH and then 500,000 merged sequences were randomly extracted to generate the sample data. Running inGAP-CDG can like as following command:
       
