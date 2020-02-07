@@ -135,14 +135,15 @@ Contents
       
        inGAP-CDG_readToCDS -i example.fas -o $your_output_dir -n 8 -L 1000 [options]
        
-       We have tested it successfully on Mac OS X EI Capitan (10.11) and Linux (Red Hat 6.3, Ubuntu 16.04, Ubuntu 14.04 LTS and Ubuntu 12.04 LTS) systems. 
+   We have tested it successfully on Mac OS X EI Capitan (10.11) and Linux (Red Hat 6.3, Ubuntu 16.04, Ubuntu 14.04 LTS and Ubuntu 12.04 LTS) systems. 
 
 References of the required software:
-     Bolger, A. M., Lohse, M., & Usadel, B. (2014). Trimmomatic: a flexible trimmer for Illumina sequence data. Bioinformatics, 30(15), 2114-2120.
-     Magoc, T., & Salzberg, S. L. (2011). FLASH: fast length adjustment of short reads to improve genome assemblies. Bioinformatics, 27(21).
+   Bolger, A. M., Lohse, M., & Usadel, B. (2014). Trimmomatic: a flexible trimmer for Illumina sequence data. Bioinformatics, 30(15), 2114-2120.
+   Magoc, T., & Salzberg, S. L. (2011). FLASH: fast length adjustment of short reads to improve genome assemblies. Bioinformatics, 27(21).
 
 
 NOTE: 
+
 (1) If you want to run inGAP-CDG in a Strict Mode (to increase CDS length and specificity but at the expense of sensitivity), you can simply increase the value of the ‘-p’ option from 300 [default] to 400 or 450. For example, inGAP-CDG_readToCDS -i example.fas -o $your_output_dir -n 8 -L 1000 -p 400 [options].
 
 (2) The user can replace the blat binary optionally in the ‘tools’ directory of inGAP-CDG package using the latest version downloaded from owner’s page.
