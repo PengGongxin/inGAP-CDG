@@ -148,48 +148,9 @@ NOTE:
        2) The user can replace the blat binary optionally in the ‘tools’ directory of inGAP-CDG package using the latest version downloaded from owner’s page.
 
 
-4.  inGAP-CDG output 
-============================================================================================================
-Six folders will be created after running the inGAP-CDG algorithms. They are: SixFrameTranslation, PreAssembly, SVM, ContigsAssembly, ScaffoldsAssembly and OutputCDSs.
 
 
-OutputCDSs folder:
-         cds.nuc.fas                  the predicted genes (nucleotides) of inGAP-CDG 
-         cds.pep.fas                  the predicted genes (peptides) of inGAP-CDG 
- 
-SixFrameTranslation folder:
-         graph.train.nuc              strict translated ORFs of six-frame translation for train set of SVM
-         graph.train.pep              translated peptides of strict translated ORFs
-         input.format.fa              format the input data
-         test.nuc                     loose translated ORFs
-
-PreAssembly folder:
-         arc                          the edges of codon-base de bruijn graph based on strict translated ORFS
-         node.info                    the nodes of codon-base de bruijn graph based on strict translated ORFS
-         precontigs.nuc.fas           the assembled contigs of codon-base de bruijn graph based on strict translated ORFS 
-
-SVM folder:
-         svm.result                   the classification result of SVM
-         svm_best_para                the best parameter of SVM 
-         test.svm                     the test vector of loose translated ORFs for SVM
-         test.svm.nuc                 the positive sequence after SVM 
-         train.svm                    the train vector of contigs assembled by strict translated ORFS for SVM
-         train.svm.model              the train model of contigs assembled by strict translated ORFS in SVM
-ContigsAssembly folder:
-         arc                          the edges of codon-base de bruijn graph based on positive sequence of SVM
-         contigs.nuc.300.fas          the assembled nucleotides of codon-base de bruijn graph based on positive sequence of SVM (>=300bp)
-         contigs.nuc.fas              the assembled nucleotides of codon-base de bruijn graph based on positive sequence of SVM 
-         contigs.pep.100.fas          the assembled peptides of codon-base de bruijn graph based on positive sequence of SVM (>=100aa)
-         contigs.pep.fas              the assembled peptides of codon-base de bruijn graph based on positive sequence of SVM 
-         node.info                    the nodes of codon-base de bruijn graph based on positive sequence of SVM
-ScaffoldsAssembly folder:
-         arc                          the edges of codon-base de bruijn graph based on loose translated ORFs
-         node.info                    the nodes of codon-base de bruijn graph based on loose translated ORFs
-         scaffolds.nuc.fas            the assembled nucleotides of codon-base de bruijn graph based on loose translated ORFs in the guidance of positive sequence of SVM 
-         scaffolds.pep.fas            the assembled peptides of codon-base de bruijn graph based on loose translated ORFs in the guidance of positive sequence of SVM 
-
-
-5.  FAQ
+4.  FAQ
 =============================================================================
 
 For technical supports or report bugs, please send an email to penggongxin@biols.ac.cn.
