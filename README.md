@@ -5,6 +5,7 @@ Manual of inGAP-CDG v1.2
 
 
 Description: 
+
 inGAP-CDG is a novel computational method for effective construction of full-length and non-redundant CDSs from unassembled transcriptomes. inGAP-CDG achieves this by combining a newly developed codon-based de bruijn graph to simplify the assembly process and a machine learning based approach to filter false positives. Compared with other methods, inGAP-CDG exhibits significantly increased predicted CDS length and robustness to sequencing errors and varied read length. It contains two algorithms: inGAP-CDG_readToCDS and inGAP-CDG_transcriptToCDS. 
 
 inGAP-CDG_readToCDS is designed to predict genes from unassembled RNA-seq reads.
@@ -99,17 +100,17 @@ Contents
    
     (2) Using the SRA Toolkit (https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software) to convert the downloaded file of SRR1045067.sra into ‘fastq’ formats
    
-        fastq-dump —-split-3 SRR1045067.sra 
+         fastq-dump —-split-3 SRR1045067.sra 
 
     (3) Using Trimmomatic (http://www.usadellab.org/cms/index.php?page=trimmomatic) to trim low quality reads
   
-        java -jar ./Trimmomatic-0.30/trimmomatic-0.30.jar PE -threads 20 -phred33 SRR1045067_1.fastq SRR1045067_2.fastq  SRR1045067_1.clean.fastq SRR1045067_1.unpaired.fastq SRR1045067_2.clean.fastq SRR1045067_2.unpaired.fastq  ILLUMINACLIP:/Trimmomatic-0.30/adapters/TruSeq3-PE.fa:2:30:10  LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:100
+         java -jar ./Trimmomatic-0.30/trimmomatic-0.30.jar PE -threads 20 -phred33 SRR1045067_1.fastq SRR1045067_2.fastq  SRR1045067_1.clean.fastq SRR1045067_1.unpaired.fastq SRR1045067_2.clean.fastq SRR1045067_2.unpaired.fastq  ILLUMINACLIP:/Trimmomatic-0.30/adapters/TruSeq3-PE.fa:2:30:10  LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:100
    
     (4) Merging reads 
     
       1) if the paired-end reads have overlaps, you can use FLASH to merge them into long reads (https://sourceforge.net/projects/flashpage/)
 
-            flash -r 150 -f 250 -s 20 SRR1045067_1.clean.fastq SRR1045067_2.clean.fastq -o out
+           flash -r 150 -f 250 -s 20 SRR1045067_1.clean.fastq SRR1045067_2.clean.fastq -o out
 	
        FLASH will merge the paired-end reads into file ’out.extendedFrags.fastq’ and then, you can convert the .fq file to .fa file
           
@@ -121,24 +122,24 @@ Contents
     
     (5) Running inGAP-CDG
     
-       i. gene prediction based on reads
+      i. gene prediction based on reads
 
             inGAP-CDG_readToCDS -i out.extendedFrags.fa -o $your_output_dir [options]
         
         When finished, the resulting gene prediction file will be in the output/OutputCDSs folder.
          
-        ii. gene prediction based on transcripts
-         First, you need to assemble RNA-seq reads into transcripts using any transcriptome assembler. (e.g. Trinity, Soapdenovo-Trans or Oases). If you get the transcripts file named ‘transcripts.fas’, you will run inGAP-CDG using the following command:
+      ii. gene prediction based on transcripts
+       First, you need to assemble RNA-seq reads into transcripts using any transcriptome assembler. (e.g. Trinity, Soapdenovo-Trans or Oases). If you get the transcripts file named ‘transcripts.fas’, you will run inGAP-CDG using the following command:
           
            inGAP-CDG_transcriptToCDS -i transcripts.fas -o $your_output_dir [options]
           
-        When finished, the resulting gene prediction file will be in the output/OutputCDSs folder.
+      When finished, the resulting gene prediction file will be in the output/OutputCDSs folder.
      
     (6) Testing inGAP-CDG 
 
        You can test inGAP-CDG using the example file in the inGAP-CDG. The “example.fas” was sampled from a human RNA-seq data set with the accession number of SRR1045067. Specifically, paired-end reads were firstly merged by FLASH and then 500,000 merged sequences were randomly extracted to generate the sample data. Running inGAP-CDG can like as following command:
       
-       inGAP-CDG_readToCDS -i example.fas -o $your_output_dir -n 8 -L 1000 [options]
+         inGAP-CDG_readToCDS -i example.fas -o $your_output_dir -n 8 -L 1000 [options]
        
        We have tested it successfully on Mac OS X EI Capitan (10.11) and Linux (Red Hat 6.3, Ubuntu 16.04, Ubuntu 14.04 LTS and Ubuntu 12.04 LTS) systems. 
 
