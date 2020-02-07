@@ -92,6 +92,7 @@ Contents
     NOTE:This manual assumes that you have all the software needed installed on your system and can thus directly run them. If you have it not installed but only downloaded and extracted to a folder, please use the absolute path instead.
 
     (1) Download reads from NCBI SRA database
+    
     Take a human RNA-seq data set with the accession number of SRR1045067 as an example. You can download this data set from SRA(Sequence Read Archive) database of NCBI(National Center for Biotechnology Information) using following command:
    
     wget ftp://ftp.ncbi.nlm.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/SRR104/SRR1045067/SRR1045067.sra
@@ -105,6 +106,7 @@ Contents
     java -jar ./Trimmomatic-0.30/trimmomatic-0.30.jar PE -threads 20 -phred33 SRR1045067_1.fastq SRR1045067_2.fastq  SRR1045067_1.clean.fastq SRR1045067_1.unpaired.fastq SRR1045067_2.clean.fastq SRR1045067_2.unpaired.fastq  ILLUMINACLIP:/Trimmomatic-0.30/adapters/TruSeq3-PE.fa:2:30:10  LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:100
    
     (4) Merging reads 
+    
        1) if the paired-end reads have overlaps, you can use FLASH to merge them into long reads (https://sourceforge.net/projects/flashpage/)
 
           flash -r 150 -f 250 -s 20 SRR1045067_1.clean.fastq SRR1045067_2.clean.fastq -o out
@@ -118,6 +120,7 @@ Contents
           cat SRR1045067_1.clean.fastq SRR1045067_2.clean.fastq | awk ‘{if(NR%4==1 || NR%4==2) print}’ | sed ’s/@/>/g’ > out.extendedFrags.fa
     
     (5) Running inGAP-CDG
+    
         1) gene prediction based on reads
 
           inGAP-CDG_readToCDS -i out.extendedFrags.fa -o $your_output_dir [options]
