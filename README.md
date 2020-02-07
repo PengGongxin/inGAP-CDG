@@ -126,16 +126,16 @@ Contents
 
             inGAP-CDG_readToCDS -i out.extendedFrags.fa -o $your_output_dir [options]
         
-        When finished, the resulting gene prediction file will be in the output/OutputCDSs folder.
+    When finished, the resulting gene prediction file will be in the output/OutputCDSs folder.
          
       ii. gene prediction based on transcripts
        First, you need to assemble RNA-seq reads into transcripts using any transcriptome assembler. (e.g. Trinity, Soapdenovo-Trans or Oases). If you get the transcripts file named ‘transcripts.fas’, you will run inGAP-CDG using the following command:
           
            inGAP-CDG_transcriptToCDS -i transcripts.fas -o $your_output_dir [options]
           
-  When finished, the resulting gene prediction file will be in the output/OutputCDSs folder.
+     When finished, the resulting gene prediction file will be in the output/OutputCDSs folder.
      
-    (6) Testing inGAP-CDG 
+   (6) Testing inGAP-CDG 
 
        You can test inGAP-CDG using the example file in the inGAP-CDG. The “example.fas” was sampled from a human RNA-seq data set with the accession number of SRR1045067. Specifically, paired-end reads were firstly merged by FLASH and then 500,000 merged sequences were randomly extracted to generate the sample data. Running inGAP-CDG can like as following command:
       
@@ -145,7 +145,7 @@ Contents
 
 
 
-    (7) Note 
+   (7) Note 
        1) If you want to run inGAP-CDG in a Strict Mode (to increase CDS length and specificity but at the expense of sensitivity), you can simply increase the value of the ‘-p’ option from 300 [default] to 400 or 450. For example, inGAP-CDG_readToCDS -i example.fas -o $your_output_dir -n 8 -L 1000 -p 400 [options].
 
        2) The user can replace the blat binary optionally in the ‘tools’ directory of inGAP-CDG package using the latest version downloaded from owner’s page.
