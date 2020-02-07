@@ -110,7 +110,7 @@ Contents
     
       1) if the paired-end reads have overlaps, you can use FLASH to merge them into long reads (https://sourceforge.net/projects/flashpage/)
 
-           flash -r 150 -f 250 -s 20 SRR1045067_1.clean.fastq SRR1045067_2.clean.fastq -o out
+              flash -r 150 -f 250 -s 20 SRR1045067_1.clean.fastq SRR1045067_2.clean.fastq -o out
 	
        FLASH will merge the paired-end reads into file ’out.extendedFrags.fastq’ and then, you can convert the .fq file to .fa file
           
@@ -118,7 +118,7 @@ Contents
        
        2) if the paired-end reads have no overlaps, inGAP-CDG will treat them as single-end reads.
           
-           cat SRR1045067_1.clean.fastq SRR1045067_2.clean.fastq | awk ‘{if(NR%4==1 || NR%4==2) print}’ | sed ’s/@/>/g’ > out.extendedFrags.fa
+              cat SRR1045067_1.clean.fastq SRR1045067_2.clean.fastq | awk ‘{if(NR%4==1 || NR%4==2) print}’ | sed ’s/@/>/g’ > out.extendedFrags.fa
     
     (5) Running inGAP-CDG
     
@@ -133,7 +133,7 @@ Contents
           
            inGAP-CDG_transcriptToCDS -i transcripts.fas -o $your_output_dir [options]
           
-      When finished, the resulting gene prediction file will be in the output/OutputCDSs folder.
+  When finished, the resulting gene prediction file will be in the output/OutputCDSs folder.
      
     (6) Testing inGAP-CDG 
 
