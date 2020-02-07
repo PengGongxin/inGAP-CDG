@@ -11,15 +11,8 @@ inGAP-CDG is a novel computational method for effective construction of full-len
 inGAP-CDG_readToCDS is designed to predict genes from unassembled RNA-seq reads.
 inGAP-CDG_TranscriptToCDS is designed to predict genes from assembled transcripts.
 
-Contents
 
-1.  Installation
-2.  inGAP-CDG USAGE: command options        
-        (1) inGAP-CDG_readToCDS
-        (2) inGAP-CDG_transcriptToCDS
-3.  inGAP-CDG RUN: common commands and examples
-4.  inGAP-CDG output
-5.  FAQ
+
 
 1.  Installation
 ============================================================================================================
