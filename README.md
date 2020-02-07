@@ -121,13 +121,13 @@ Contents
     
     (5) Running inGAP-CDG
     
-        1) gene prediction based on reads
+         i gene prediction based on reads
 
           inGAP-CDG_readToCDS -i out.extendedFrags.fa -o $your_output_dir [options]
         
           When finished, the resulting gene prediction file will be in the output/OutputCDSs folder.
          
-       2) gene prediction based on transcripts
+         ii gene prediction based on transcripts
           First, you need to assemble RNA-seq reads into transcripts using any transcriptome assembler. (e.g. Trinity, Soapdenovo-Trans or Oases). If you get the transcripts file named ‘transcripts.fas’, you will run inGAP-CDG using the following command:
           
           inGAP-CDG_transcriptToCDS -i transcripts.fas -o $your_output_dir [options]
