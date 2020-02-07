@@ -143,14 +143,15 @@ References of the required software:
 
 
 NOTE: 
-       1) If you want to run inGAP-CDG in a Strict Mode (to increase CDS length and specificity but at the expense of sensitivity), you can simply increase the value of the ‘-p’ option from 300 [default] to 400 or 450. For example, inGAP-CDG_readToCDS -i example.fas -o $your_output_dir -n 8 -L 1000 -p 400 [options].
+(1) If you want to run inGAP-CDG in a Strict Mode (to increase CDS length and specificity but at the expense of sensitivity), you can simply increase the value of the ‘-p’ option from 300 [default] to 400 or 450. For example, inGAP-CDG_readToCDS -i example.fas -o $your_output_dir -n 8 -L 1000 -p 400 [options].
 
-       2) The user can replace the blat binary optionally in the ‘tools’ directory of inGAP-CDG package using the latest version downloaded from owner’s page.
+(2) The user can replace the blat binary optionally in the ‘tools’ directory of inGAP-CDG package using the latest version downloaded from owner’s page.
 
 
 
 
 4.  FAQ
+
 =============================================================================
 
 For technical supports or report bugs, please send an email to penggongxin@biols.ac.cn.
